@@ -20,7 +20,7 @@ A modular and scalable chatbot implementation using FastAPI, LangChain, and Groq
 
 1. Clone the repository:
     ```bash
-        git clone https://github.com/
+        git clone https://github.com/younesnarjis/chatbot-langchain.git
     ```
 
 2. Navigate to the project directory:
