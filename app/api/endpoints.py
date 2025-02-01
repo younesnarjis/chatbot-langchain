@@ -1,4 +1,5 @@
 import logging
+from langchain.schema import AIMessage
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 from app.api.models import ChatRequest, ChatResponse
@@ -25,7 +26,7 @@ async def chat(request: ChatRequest):
             target_language=request.target_language
         )
 
-        content = response.content if type(response) != str and response.content else response
+        content = response.content if isinstance(response, AIMessage) else response
 
         thoughts = None
         if "<think>" in content and "</think>" in content:
@@ -38,7 +39,7 @@ async def chat(request: ChatRequest):
             response=content.lstrip('\n'),
             thoughts=thoughts,
             tool_used=request.tool if request.tool else "chat",
-            response_metadata=response.response_metadata if type(response) != str and response.response_metadata else None
+            response_metadata=response.response_metadata if isinstance(response, AIMessage) else None
         )
     except Exception as e:
         logger.error(f"Error processing chat request: {str(e)}")
