@@ -7,3 +7,7 @@ langchain
 groq
 langchain-groq
 mangum
+pytest
+pytest-asyncio
+pytest-cov
+httpx

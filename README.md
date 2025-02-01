@@ -42,7 +42,12 @@ A modular and scalable chatbot implementation using FastAPI, LangChain, and Groq
         docker build -t chatbot-langchain .
     ```
 
-2. Run the Docker container:
+2. Run tests:
+    ```bash
+        docker run chatbot-langchain pytest -v --cov=app --cov-report=term-missing
+    ```
+
+3. Run the Docker container:
     ```bash
         docker run -p 8080:8080 chatbot-langchain
     ```

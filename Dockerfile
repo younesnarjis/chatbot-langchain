@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY requirements.txt .
 
+COPY pytest.ini .
+
 RUN apt-get update && \
     apt-get install -y ffmpeg curl git && \
     pip install --no-cache-dir --upgrade pip && \
@@ -12,6 +14,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY . .
+
+ENV PYTHONPATH=/app:$PYTHONPATH
 
 # CMD ["run.handler"]
 
